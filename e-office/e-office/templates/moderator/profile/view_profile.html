@@ -1,0 +1,128 @@
+{% extends "layouts/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %} My profile {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<style>
+
+    .row{
+        display: flex;
+    flex-wrap: wrap-reverse;
+    color:black;
+
+    }
+    h2{
+        margin:10px;
+        font-family: -webkit-body;
+            color: #003d8e;
+    }
+    h4{
+        margin:7px;
+        font-family: -webkit-pictograph;
+        color:#5f3b3b;
+    }
+    .info{
+        width: 100%;
+    background-color: #e6f2ff;
+    padding-left: 15px;
+    border-radius: 4px;
+    font-family: system-ui;
+    color: #795858;
+    margin-bottom: auto;
+    }
+
+</style>
+
+    <div class='container-fluid'>
+
+    <div class='row' style='margin: auto;'>
+
+         <div class='col-md-8 col-12 h-100' style='background-color: #daebff;
+    border-right: 5px solid white;'>
+
+             <div style='border-bottom: 1px solid #000000;'>
+             
+             <h2>{User}'s information :</h2>
+
+                 <h4>Department -</h4>
+                 <p class='info'>production </p>
+                 <h4>Designation -</h4>
+                 <h4>Joining date -</h4>
+                 <h4>Salary -</h4>
+                 <h4>Posting -</h4>
+                 <h4>Division -</h4>
+                 <h4>Attendance -</h4>
+                 
+             
+             </div>
+
+
+             <div style='border-bottom: 1px solid #000000;'>
+             
+             <h2>Educational Details :</h2>
+
+                 <h4>AAAAAAAA -</h4>
+                 <h4>AAAAAAAA -</h4>
+                 <h4>AAAAAAAA -</h4>
+                 <h4>AAAAAAAA -</h4>
+                 <h4>AAAAAAAA -</h4>
+                 <h4>AAAAAAAA -</h4>
+                                 
+             
+             </div>
+
+
+             <div >
+             
+             <h2>Contact Information :</h2>
+
+                 <h4>E-mail ID -</h4>
+                 <h4>Phone Number -</h4>
+                 <h4>Full Address -</h4>
+                            
+             </div>
+
+         </div>
+
+         <div class='col-md-4 col-12' style='background-color:#a9d0ff;border-right -: 5px solid white;'>
+            <div class='row-3 ' align='center'>
+                                  
+                <div class="avatar avatar-xxl m-2">
+	                <img src="https://png.pngtree.com/element_origin_min_pic/07/04/20/16570627b2a83e4.jpg" alt="..." class="avatar-img rounded">
+                </div>
+
+                <h3>profile picture</h3>
+
+            </div>
+
+            <div class='row-9' style='border-top: 1px solid #1269db;
+    padding-top: 20px;'>
+
+                
+                <h4>E-mail -</h4>
+                <h4>Mobile number -</h4>
+                <h4>City -</h4>
+                <h4>State -</h4>
+                <h4>Gender -</h4>
+                <h4>Maritial status -</h4>
+                <h4>Full address -</h4>
+                
+                
+            </div>
+        <a class="btn btn-primary w-100" href="{% url 'moderator:updateprofile' %}" style='margin-top:15px;'><i class="far fa-edit"></i> Edit My Profile</a>
+         </div>
+
+
+
+    </div>
+    </div>
+    
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,34 @@
+
+{% comment %} <nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">Moderator</li>
+		<li class="breadcrumb-item">View</li>
+		<li class="breadcrumb-item active" aria-current="page">Notifications</li>
+	</ol>
+</nav>
+
+{% for i in noti %}
+ 
+
+<div class="card mx-auto" style="width: 18rem;text-align:center;">
+{% if i.title in storedmsg %}<span class="badge badge-danger">Unseen</span>{% endif %}
+	<a href="{% url 'moderator:notification_detail' i.id %}">
+  <ul class="list-group list-group-flush">
+		<li class="list-group-item justify-content-center">xyz</li>
+    
+    
+		<li class="list-group-item justify-content-center">  <h5 class="card-title">{{ i.title }}</h5>  </li>
+		
+	</ul>
+  </a>
+</div>
+
+{% endfor %}
+    
+     {% endcomment %}<a href="{% url 'moderator:notification_list' %}" >
+						<li class="nav-item dropdown hidden-caret">
+									<i class="fa fa-bell" style='width: 16px;color: white;margin: 11px;'></i>
+									{% if storedmsg|length > 0 and storedmsg|length < 100 %} <span class="notification">{{ storedmsg|length }}</span> {% else %} {% if storedmsg|length > 99 %} <span class="notification">99+</span> {% endif %}{% endif %}
+								
+						</li>	
+                        </a> 

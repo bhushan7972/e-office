@@ -1,0 +1,106 @@
+{% extends "base/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block body %}
+
+<style>
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    
+  }
+  
+  .container{
+     padding: 15px;
+      border: 1px solid grey;
+      /* margin: 9px 8px; */
+      border-radius: 23px;
+      background-color: #001e3b;
+      color: #00d9ff;
+      width: 100%;
+  }
+  
+  .asteriskField{
+     display: none;
+  }
+
+  btn-primary:hover{
+      background-color: rgb(2, 88, 40);
+  }
+
+  .row{
+      display: flex;
+      flex-wrap: wrap-reverse;
+  }
+    
+  </style>
+  
+  <div class="row w-100 h-100">
+     
+    <div class="col-12 col-lg-7 col-md-6 w-100 h-100">
+
+        <div>
+        <img class="center" src="{% static 'images/uNGdWHi.png' %}" >
+     </div>
+   
+     </div>
+
+
+     <div class="col-12 col-lg-5 col-md-6">
+     <div class='container col-12 mx-2 my-2 center'>
+  
+        <h4 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;text-align: center;color: #ff9b05">Login</h4>
+  
+        <form class="" novalidate method="post" enctype="multipart/form-data">
+            
+            {% csrf_token %}
+  
+           {{form|crispy}}
+           
+           <a href="#" class="tx-13" style='color: #06f83a;'>Forgot password?</a><br>
+           <button type="submit" class="btn btn-primary btn-lg w-100 my-2 col-12"
+           onMouseOver="this.style.backgroundColor='green'" 
+           onMouseOut="this.style.backgroundColor='seagreen'"
+           style='padding: 0.3rem 7rem;
+           text-align: center;
+font-size: 1.25rem;
+line-height: 1.;
+border-radius: 0.5rem;
+background-color: seagreen;'>Login</button>
+
+       </form>
+
+       <div class="divider-text">Don't have an account? <span style="color: thistle;"> Register Now</span></div>
+
+       <div class="divider-text">
+           <div class="btn-group w-100 my-2" role="group" aria-label="Basic example">
+                <a href="{% url 'moderator:signup_hr' %}" class="btn btn-xs btn-outline-primary btn-icon w-100">
+                   Signup as HR <i data-feather="camera"></i> </a>
+                </div><br>
+           <div class="btn-group w-100 my-2" role="group" aria-label="Basic example">
+            <a href="{% url 'moderator:signup_manager' %}" class="btn btn-xs btn-outline-danger btn-icon w-100">Signup
+                as Manager<i data-feather="user-check"></i> </a>
+                </div>
+                <div class="btn-group w-100 my-2" role="group" aria-label="Basic example">
+                    <a href="{% url 'moderator:signup_employee'  %}" class="btn btn-xs btn-outline-warning btn-icon w-100">Signup
+                        as Employee<i data-feather="user-check"></i> </a>
+                        </div>
+        </div>
+
+
+   </div>
+  
+     
+  
+     </form>
+    </div>
+  
+  
+  </div>
+
+
+
+    {% endblock %}

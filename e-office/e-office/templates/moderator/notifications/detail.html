@@ -1,0 +1,56 @@
+{% extends "layouts/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+
+<style>
+
+   #sender{
+	   background-color: #659cff;
+       color: #ffffff;
+   }
+
+</style>
+
+{% endblock stylesheets %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">Notification</li>
+		
+	</ol>
+</nav>
+	
+{% comment %} <div class="card text-center w-70 mx-auto" >
+	<div class="card-header"> {% endcomment %}
+	 
+	{% comment %} </div>
+	<div class="card-body">
+	  <h5 class="card-title">{{ notice.title }}</h5>
+	  <p class="card-text">{{ notice.message }}</p>
+	  
+	<div class="card-footer text-muted">
+	  <p> Posted at : {{ notice.created_at }}</p>
+	</div>
+  </div> {% endcomment %}
+
+  <div class="card mx-auto col-12 col-md-9" style="text-align:center;">
+	<ul class="list-group list-group-flush">
+		<li class="list-group-item justify-content-center" id='sender'> From : {{ notice.sender }}</li>
+		<li class="list-group-item justify-content-center"><h5 class="card-title"  style="color: #191919;font-family: sans-serif;">{{ notice.title }}</h5></li>
+		<li class="list-group-item justify-content-center" style="color: #191919;font-family: -webkit-pictograph;">{{ notice.message }}</li>
+		<li class="list-group-item justify-content-center text-muted">Posted at : {{ notice.created_at|date:"h a, j M, Y" }}</li>
+		
+	</ul>
+</div>
+  
+    
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}

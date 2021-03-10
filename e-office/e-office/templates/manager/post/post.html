@@ -1,0 +1,95 @@
+{% extends "layouts/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block title %} post page {% endblock title %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">Manager</li>
+		<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+	</ol>
+</nav>
+<!-------------------------- For SALES ------------------------>
+{% if manager.department == 'SALES'%}
+<center><h1> SALES Department</h1></center><br>
+<table class="table">
+ <thead>
+    <tr>
+       <th scope="col">Title</th>
+       <th scope="col">content</th>
+    </tr>
+  </thead>
+  <tbody>
+	{% for e in emp %}
+    <tr>
+      <td>{{e.title}}</td>
+      <td>{{e.content}}</td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+<!-------------------------- For MARKETING ------------------------>
+{% elif manager.department == 'MARKETING' %}
+<center><h1> MARKETING Department</h1></center><br>
+<table class="table">
+ <thead>
+    <tr>
+       <th scope="col">Title</th>
+       <th scope="col">content</th>
+    </tr>
+  </thead>
+  <tbody>
+	{% for e in emp %}
+    <tr>
+      <td>{{e.title}}</td>
+      <td>{{e.content}}</td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+<!-------------------------- For PRODUCTION ------------------------>
+{% elif manager.department == 'PRODUCTION' %}
+<center><h1> PRODUCTION Department</h1></center><br>
+<table class="table">
+ <thead>
+    <tr>
+       <th scope="col">Title</th>
+       <th scope="col">content</th>
+    </tr>
+  </thead>
+  <tbody>
+	{% for e in emp %}
+    <tr>
+      <td>{{e.title}}</td>
+      <td>{{e.content}}</td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+<!-------------------------- For HR ------------------------>
+{% elif manager.department == 'HR' %}
+<center><h1> HR Department</h1></center><br>
+<table class="table">
+ <thead>
+    <tr>
+       <th scope="col">Title</th>
+       <th scope="col">content</th>
+    </tr>
+  </thead>
+  <tbody>
+	{% for e in emp %}
+    <tr>
+      <td>{{e.title}}</td>
+      <td>{{e.content}}</td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table>
+ {% endif %}
+{% endblock %}

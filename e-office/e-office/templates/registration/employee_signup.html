@@ -1,0 +1,66 @@
+{% extends "base/base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block body %}
+
+<style>
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+
+.container{
+   padding: 15px;
+    border: 1px solid grey;
+    /* margin: 9px 8px; */
+    border-radius: 23px;
+    background-color: white;
+    color: #000000;
+    width: 100%;
+}
+
+.asteriskField{
+   display: none;
+}
+
+button{
+   width: 100%;
+    margin: 10px 0px;
+}
+
+
+
+</style>
+
+<div class="row w-100" style="background-color: #beb5b6;">
+   <div class="col-12 col-lg-5 col-md-6">
+   <div class='container col-12 mx-2 my-2 center'>
+
+      <h4 style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;text-align: center;color: #995c00">Signup form</h4>
+
+      <form class="needs-validation" novalidate method="post" enctype="multipart/form-data">
+
+         {% csrf_token %}
+
+         {{form|crispy}}
+         
+         <button class="btn btn-primary" type="submit">Submit form</button>
+
+   </div>
+
+   </form>
+
+</div>
+
+<div class="col-12 col-lg-7 col-md-6">
+   <div>
+   <img class="center" src="{% static 'images/people-office-workplace_24908-56322.jpg' %}" >
+</div>
+</div>
+</div>
+
+{% endblock %}

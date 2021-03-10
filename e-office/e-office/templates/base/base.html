@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	
+	<title>
+		  {% block title %}{% endblock %}
+	</title>
+
+	<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+	<!-- <link rel="icon" href="/static/assets/img/icon.ico" type="image/x-icon"/> -->
+
+
+	
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="/static/assets/css/atlantis.min.css"> -->
+
+	
+
+    <!-- Specific CSS goes HERE -->
+    {% block stylesheets %}{% endblock stylesheets %}
+
+<style>
+
+.errorlist{
+  color:red;
+  font-family: sans-serif;
+  font-size: initial;
+
+}
+
+</style>
+    
+  </head>
+  <body>
+    
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <a href="#" class="logo">
+      <span style="color:#ffffff; font-size:large">e<b>Office</b></span>	</a>
+    <!-- <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active" style='margin:5px 20px;font-family: sans-serif;'>
+        <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+      </li>
+      
+      <li class="nav-item active" style='margin:5px 20px;font-family: sans-serif;'>
+        <a class="nav-link" href="#">Projects <span class="sr-only">(current)</span></a>
+      </li>
+      
+      <li class="nav-item active" style='margin:5px 20px;font-family: sans-serif;'>
+        <a class="nav-link" href="#">Inbox <span class="sr-only">(current)</span></a>
+      </li>
+      
+      <li class="nav-item active" style='margin:5px 20px;font-family: sans-serif;'>
+        <a class="nav-link" href="#">Notifications <span class="sr-only">(current)</span></a>
+      </li>
+      
+    </ul> -->
+    
+  </div>
+</nav>
+<div style=' min-height: calc(100vh - 120px);width: 100%;'>
+     {% block body %}
+     
+     
+     {% endblock %}  
+     </div>
+
+     <footer class="footer" style=' min-height: 25px '>
+      <div class="text p-3" style="background-color: #bbdeff;">
+    © 2021 @ <b>E-office</b> v1.0.0.
+    <a class="text-dark" href="https://blendgoc.com" style='float:right;'>BlendGoc</a>
+  </div>
+      </footer>
+
+
+
+      {% comment %} ------------  Scripts start --------------- {% endcomment %}	
+
+      <!--   Core JS Files   -->
+        <script src="/static/assets/js/core/jquery.3.2.1.min.js"></script>
+        <script src="/static/assets/js/core/popper.min.js"></script>
+        <script src="/static/assets/js/core/bootstrap.min.js"></script>
+      
+        <!-- jQuery UI -->
+        <script src="/static/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+        <script src="/static/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+      
+        <!-- jQuery Scrollbar -->
+        <script src="/static/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+      
+        <!-- Chart JS -->
+        <script src="/static/assets/js/plugin/chart.js/chart.min.js"></script>
+      
+        <!-- jQuery Sparkline -->
+        <script src="/static/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+      
+        <!-- Chart Circle -->
+        <script src="/static/assets/js/plugin/chart-circle/circles.min.js"></script>
+      
+        <!-- Datatables -->
+        <script src="/static/assets/js/plugin/datatables/datatables.min.js"></script>
+      
+        <!-- Bootstrap Notify -->
+        <script src="/static/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+      
+        <!-- jQuery Vector Maps -->
+        <script src="/static/assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
+        <script src="/static/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+      
+        <!-- Sweet Alert -->
+        <script src="/static/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+      
+        <!-- Atlantis JS -->
+        <script src="/static/assets/js/atlantis.min.js"></script>
+      
+        <script src="/static/assets/js/setting-demo.js"></script>
+      
+      {% comment %} ------------  Scripts End --------------- {% endcomment %}  </body>
+</html>

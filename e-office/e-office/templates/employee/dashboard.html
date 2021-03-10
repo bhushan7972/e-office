@@ -1,0 +1,177 @@
+{% extends "layouts/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">Employee</li>
+		<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+	</ol>
+</nav>
+<br>
+<!--<table class="table">-->
+<!-- <thead>-->
+<!--    <tr>-->
+<!--      <th scope="col">ID</th>-->
+<!--      <th scope="col">Username</th>-->
+<!--      <th scope="col">Department</th>-->
+<!--      <th scope="col">Designation</th>-->
+<!--    </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+<!--	{% for e in emp %}-->
+<!--    <tr>-->
+<!--      <th scope="row">{{e.user.id}}</th>-->
+<!--      <td>{{e.user.username}}</td>-->
+<!--      <td>{{e.department}}d>-->
+<!--      <td>{{e.designation}}</td>-->
+<!--    </tr>-->
+<!--    {% endfor %}-->
+<!--	-->
+<!--  </tbody>-->
+<!--</table>-->
+
+
+<center><h1> SALES Department</h1></center><br>
+<table class="table">
+ <thead>
+    <tr>
+       <th scope="col">Department</th>
+       <th scope="col">Username</th>
+       <th scope="col">Designation</th>
+    </tr>
+  </thead>
+  <tbody>
+	{% for e in e_s %}
+	{% if e.department == 'SALES'%}
+    <tr>
+      <td>{{e.department}}</td>
+      <td>{{e.user.username}}</td>
+      <td>{{e.designation}}</td>
+    </tr>
+	  {% endif %}
+    {% endfor %}
+	
+  </tbody>
+</table>
+<center><h1>Marketing Department</h1></center><br>
+<table class="table">
+ <thead>
+    <tr>
+       <th scope="col">Department</th>
+       <th scope="col">Username</th>
+       <th scope="col">Designation</th>
+    </tr>
+  </thead>
+  <tbody>
+	{% for e in e_m %}
+	{% if e.department == 'MARKETING'%}
+    <tr>
+      <td>{{e.department}}</td>
+      <td>{{e.user.username}}</td>
+      <td>{{e.designation}}</td>
+    </tr>
+	  {% endif %}
+    {% endfor %}
+	
+  </tbody>
+</table>
+<center><h1> Production Department</h1></center><br>
+<table class="table">
+ <thead>
+    <tr>
+       <th scope="col">Department</th>
+       <th scope="col">Username</th>
+       <th scope="col">Designation</th>
+    </tr>
+  </thead>
+  <tbody>
+	{% for e in e_p %}
+	{% if e.department == 'PRODUCTION'%}
+    <tr>
+      <td>{{e.department}}</td>
+      <td>{{e.user.username}}</td>
+      <td>{{e.designation}}</td>
+    </tr>
+	  {% endif %}
+    {% endfor %}
+	
+  </tbody>
+</table>
+<center><h1> HR Department</h1></center><br>
+<table class="table">
+ <thead>
+    <tr>
+       <th scope="col">Department</th>
+       <th scope="col">Username</th>
+       <th scope="col">Designation</th>
+    </tr>
+  </thead>
+  <tbody>
+	{% for e in e_hr %}
+	{% if e.department == 'HR'%}
+    <tr>
+				<td>{{e.department}}</td>
+      <td>{{e.user.username}}</td>
+      <td>{{e.designation}}</td>
+    </tr>
+	  {% endif %}
+    {% endfor %}
+	
+  </tbody>
+</table>
+{% unread_notifications request.user.id as result %}{% if result > 0 and result < 2 %} 
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+	You have {% unread_notifications request.user.id %} unread notification.
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+	</div>
+
+	{% else %}
+	{% if result > 1 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_notifications request.user.id %} unread notifications.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% endif %}
+	{% endif %}
+
+	{% unread_msg request.user.id as unreadmsg %}{% if unreadmsg > 0 and unreadmsg < 2 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_msg request.user.id %} unread message.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% else %}
+	{% if unreadmsg > 1 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_msg request.user.id %} unread messages.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% endif %}
+	{% endif %}
+    
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}
