@@ -1,0 +1,131 @@
+{% extends "layouts/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+<style>
+  body{
+   background-color:#d5f4e6;
+}
+
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<br>
+<br>
+<center>
+
+</center>
+{% for i in per %}
+<div class="container">
+    <div class="main-body">    
+          <div class="row gutters-sm">
+            <div class="col-md-4 mb-3" >
+              <div class="card" style="background-color:#80ced6;" >
+                <div class="card-body">
+                  <div class="d-flex flex-column align-items-center text-center">
+                    <img src="{{ i.profile_picture.url }}" alt="Admin" class="rounded-circle" width="150" height="130">
+                    <div class="mt-3">
+                      <h3 style="color:Black;">{{i.user.first_name|capfirst}}</h3>
+                      <p style="color:Black;">{{i.designation}}</p>
+                      <p style="color:Black;">{{i.city|capfirst}}</p>
+                  <div class="card-body">
+                      <a href="{% url 'moderator:message' i.user.id %}" class="card-link">
+                        <button type="button" class="btn btn-primary"><i class="fa fa-envelope fa-2x" aria-hidden="true" style="color:#EDF5E1;">{{ ' ' }}Message</i></button>
+                        </a>
+                  </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="card mb-3" style="background-color:#80ced6;">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0" style="color:Black;">Full Name</h6>
+                    </div>
+                    <div class="col-sm-9" style="color:Black;">
+                        {{i.user.first_name|capfirst}}  {{ '  ' }}  {{i.user.last_name|capfirst}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0" style="color:Black;">Gender</h6>
+                    </div>
+                    <div class="col-sm-9" style="color:Black;">
+                        {{i.gender|capfirst}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0" style="color:Black;">Email</h6>
+                    </div>
+                    <div class="col-sm-9 " style="color:Black;">
+                        {{i.user.email|capfirst}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0" style="color:Black;">Marital Status</h6>
+                    </div>
+                    <div class="col-sm-9" style="color:Black;">
+                        {{i.maritial_status}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0" style="color:Black;">Designation</h6>
+                    </div>
+                    <div class="col-sm-9" style="color:Black;">
+                        {{i.designation}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0" style="color:Black;">Department</h6>
+                    </div>
+                    <div class="col-sm-9" style="color:Black;">
+                        {{i.department}}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0" style="color:Black;">Address</h6>
+                    </div>
+                    <div class="col-sm-9" style="color:Black;">
+                        {{i.city|capfirst}} {{ "," }} {{i.state|capfirst}}
+                    </div> 
+                  </div>
+                </div>
+              </div> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+</center>
+
+
+
+
+{% endfor %}
+
+
+{% endblock %}

@@ -5,7 +5,12 @@
 {% block title %} post {% endblock title %}
 
 {% block content %}
-<br><br>
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">Write</li>
+		<li class="breadcrumb-item">Post</li>
+	</ol>
+</nav>
 <div class='container'>
   <form action="#"  method="post">
            {% csrf_token %}

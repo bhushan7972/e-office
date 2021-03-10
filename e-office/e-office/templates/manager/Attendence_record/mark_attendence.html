@@ -1,0 +1,88 @@
+{% extends "layouts/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">Attendence</li>
+		<li class="breadcrumb-item active" aria-current="page">Mark Attendence Record</li>
+	</ol>
+</nav>
+
+
+<center>
+<table  class="table table-bordered table-head-bg-info table-bordered-bd-info">
+ <thead>
+    <tr>
+       <th scope="col">Employee Name</th>
+<th scope="col">Leave Status</th>
+       <th scope="col">Mark Attendence</th>
+
+    </tr>
+  </thead>
+  <tbody>
+	{% for e in attendence_record_data %}
+
+    <tr>
+		<td>{{e.user.username}}</td>
+
+			<td>
+
+
+		{% if e.user.username in a %}
+           {% for i in emp_data %}
+
+			{{i.employee_name}}<br>
+		Resion :{{i.leave_reason}}<br>
+        Date :{{i.leave_from_date}} <br> To   {{i.leave_to_date}}<br> Total Leave day: {{i.total_leave_day}}<br>
+        Status :{{i.work_status}}<br>
+
+
+	{% endfor %}{% endif %}
+
+		</td>
+		<td><a  href="{% url 'manager:Mark_attendence' e.user.id %}">Mark Attendence</a></td>
+
+    </tr>
+
+    {% endfor %}
+
+
+
+
+  </tbody>
+</table>
+
+	{% unread_msg request.user.id as unreadmsg %}{% if unreadmsg > 0 and unreadmsg < 2 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_msg request.user.id %} unread message.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% else %}
+	{% if unreadmsg > 1 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_msg request.user.id %} unread messages.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% endif %}
+	{% endif %}
+
+
+	{% endblock content %}
+
+	<!-- Specific JS goes HERE -->
+	{% block javascripts %}{% endblock javascripts %}

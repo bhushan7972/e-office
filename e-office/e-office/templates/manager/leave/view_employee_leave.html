@@ -4,34 +4,36 @@
 {% load static %}
 {% block title %} leave {% endblock title %}
 {% block content %}
-<br><br>
+
 <nav aria-label="breadcrumb">
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item">Leave Application</li>
-		
+			<li class="breadcrumb-item active" aria-current="page">View Application</li>
 	</ol>
 </nav>
-<div class='container'>
+<div class='container' >
 
-<table class="table">
+<table align="center" class="table" >
  <thead>
     <tr>
        <th scope="col">employee_name</th>
-       <th scope="col">leave_from_date</th>
+    <!--   <th scope="col">leave_from_date</th>
        <th scope="col">leave_to_date</th>
-       <th scope="col">leave_reason</th>
+       <th scope="col">leave_reason</th> -->
+
     </tr>
   </thead>
   <tbody>
 	{% for i in empl_onleave %}
-
+    {% if i.work_status == 'empty' %}
     <tr>
-        <td>{{i.employee_name}}</td>
-      <td>{{i.leave_from_date}}</td>
-      <td>{{i.leave_to_date}}</td>
-      <td>{{i.leave_reason}}</td>
-    </tr>
+       <td> <a  href="{% url 'manager:detail_leave_application' i.id %}">{{i.employee_name}}</a></td>
 
+     <!-- <td>{{i.leave_from_date}}</td>
+      <td>{{i.leave_to_date}}</td>
+      <td>{{i.leave_reason}}</td> -->
+    </tr>
+    {% endif %}
     {% endfor %}
 
   </tbody>

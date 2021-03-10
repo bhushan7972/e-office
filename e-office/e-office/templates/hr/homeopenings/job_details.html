@@ -1,0 +1,70 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block title %}Job details{% endblock %}
+{% block body %}
+<style>
+		b {
+		color:#4d94ff;
+		text-indent: 50px;
+		}
+</style>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+			 <li class="breadcrumb-item"> <a href="{% url 'home' %}" >Home</a></li>
+			<li class="breadcrumb-item">  <a href="{% url 'login' %}">Log In</a></li>
+			<li class="breadcrumb-item"><a href="{% url 'hr:viewopenings' %}" >Current opening</a></li>
+   	</ol>
+</nav>
+<center>
+<div class="profile col-lg-7 col-md-9 col-11">
+<div class="card shadow-lg p-3 mb-2 bg-white rounded" style="max-width:30rem;  margin-top: 40px">
+<div class="card text-center">
+		<div class="card text-white bg-info mb-3">
+			<div class="card-header">
+					<h2>Job Description</h2>
+			</div>
+	  </div>
+
+			<div class="card-body">
+<div style=" text-align: left;">
+			<table>
+		
+				{% for  d in details %}
+		  <tr>
+				<h5 >{{d.designation}}</h5>
+			  <span>	<b >Experience &nbsp;:</b>&nbsp;( {{d.experience}} )<br><br></span>
+				<div style='border-bottom: 1px solid  #ebebe0;'></div>
+				<br><span>	<b >Job ID &nbsp;:</b>&nbsp;{{d.jobid}}<br></span>
+				<div style='border-bottom : 1px solid  #ebebe0;'><br></div>
+				<br><span>	<b >Posting For &nbsp;:</b>&nbsp;{{d.department|capfirst}}<br></span>
+				<div style='border-bottom : 1px solid  #ebebe0;'><br></div>
+				<p><br><span>	<b >Job Description &nbsp;:</b>&nbsp;{{d.job_description}}<br></span></p>
+				<div style='border-bottom : 1px solid  #ebebe0;'><br></div>
+				<p><br><span>	<b >Skills Required &nbsp;:</b>&nbsp;{{d.skills_required}}<br></span></p>
+				<div style='border-bottom : 1px solid  #ebebe0;'><br></div>
+				<p><br><span>	<b>Eligibility:</b>&nbsp;{{d.eligibility}}<br></span></p>
+				<div style='border-bottom : 1px solid  #0000ff;'></div>
+			  <br><span> <b >Job Location :</b><i class="material-icons">location_on</i>
+				{{d.job_location}}<br>
+					 Posted on{{d.postdate}}</span>
+				<div style='border-bottom : 1px solid  #ebebe0;'><br></div>
+				<p><br><span>	<b>Start Date:</b>&nbsp;{{d.starting_date_to_apply}}</span></p>
+				<p><span><b>End Date:</b>&nbsp;{{d.last_date_to_apply}}<br></span></p>
+				<div style='border-bottom : 1px solid  #0000ff;'></div>
+						<br><br>		<a href="{% url 'employee:apply_job' d.id %}" class="btn btn-primary " >Apply</a>
+					
+			
+			
+		</tr>
+			</table>
+			</div>
+{% endfor %}
+			</div>
+</div>
+</div>
+</div>
+</center>
+{% endblock %}

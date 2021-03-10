@@ -1,0 +1,25 @@
+{% extends "layouts/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block title %} leave {% endblock title %}
+{% block content %}
+<br><br>
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">Write</li>
+		<li class="breadcrumb-item">Task Application</li>
+	</ol>
+</nav>
+<div class='container'>
+  <form  action="{% url 'manager:createtask'  %}"  method="post" enctype="multipart/form-data">
+           {% csrf_token %}
+            {{form|crispy}}
+        <center><button type="submit"  class= "btn btn-primary btn-lg col-6 my-2" >Submit</button></center>
+
+
+  </form>
+</div>
+
+
+{% endblock content %}

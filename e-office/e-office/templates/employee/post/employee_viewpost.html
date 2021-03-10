@@ -1,0 +1,32 @@
+{% extends "layouts/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block title %} Post {% endblock title %}
+{% block content %}
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">Employee/Post</li>
+	</ol>
+</nav>
+<center>
+<div class="profile col-lg-7 col-md-9 col-11">
+<div class="card text-center">
+	<div class="card text-white bg-info mb-3">
+  <div class="card-header">
+			<h2>Posts </h2>
+  </div>
+	</div>
+
+			  {% for e in dict %}
+		<h3><br><a  href="{% url 'employee:employee_post_details' e.id %} ">{{e.title}}</a></h3>
+    
+    {% endfor %}
+
+				
+    </h3>
+  </div>
+</div>
+</center>
+{% endblock content %}

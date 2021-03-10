@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block title %}ApplyJob{% endblock %}
+{% block body %}
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+			 <li class="breadcrumb-item"> <a href="{% url 'home' %}" >Home</a></li>
+			<li class="breadcrumb-item">  <a href="{% url 'login' %}">Log In</a></li>
+			<li class="breadcrumb-item"><a href="{% url 'hr:viewopenings' %}" >Current opening</a></li>
+   
+	</ol>
+</nav>
+
+<div class="card shadow-lg p-3 mb-2 bg-white rounded" style="width:30rem;  margin-top: 70px;margin-left:30%">
+		<div class="card-body">
+				<center>	<h5 class="card-title mb-1 fw-mediumbold">Application Form </h5></center>
+		<p class="card-text">
+		<form action="#"  method="post" enctype="multipart/form-data" novalidate>
+           {% csrf_token %}
+             {{form|crispy}}
+        <center><button type="submit"  class= "btn btn-primary col-6 my-2" >Submit</button></center>
+<!--				<a href="{% url 'home' %}" class="btn btn-primary btn-xs" >Back</a>-->
+ </form>
+		
+		</p>
+		
+	</div>
+</div>
+{% endblock %}

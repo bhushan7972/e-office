@@ -29,7 +29,8 @@ def index(request):
     if request.user.is_manager:
         manager = managerP.objects.get(user=request.user)
         if manager.is_active:
-            return redirect('manager:dashboard')    
+            return redirect('manager:dashboard')
+
         else:
             return redirect('manager:createprofile')    
     

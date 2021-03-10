@@ -315,7 +315,7 @@
 												</li>
 												<li>
 													<div class="dropdown-divider"></div>
-													<a class="dropdown-item" href="#">My Profile</a>
+													<a class="dropdown-item" href="{% url 'hr:view_my_pro' %}">My Profile</a>
 													<a class="dropdown-item" href="#">Edit Profile</a>
 													<a class="dropdown-item" href="#">Inbox</a>
 													<div class="dropdown-divider"></div>
@@ -353,9 +353,10 @@
 																</div>
 															</li>
 															<li>
-																<div class="dropdown-divider"></div>
-																<a class="dropdown-item" href="#">My Profile</a>
-																<a class="dropdown-item" href="#">Edit Profile</a>
+																	<div class="dropdown-divider"></div>
+																<a class="dropdown-item"href="{% url 'manager:view_profile' %}"><i
+												class="far fa-id-badge"></i>My Profile</a>
+																<a class="dropdown-item" href="{% url 'manager:updateprofile' %}"><i class="far fa-edit"></i> Edit Profile</a>
 																<a class="dropdown-item" href="#">Inbox</a>
 																<div class="dropdown-divider"></div>
 																{% endif %}
@@ -380,10 +381,10 @@
 																	<div class="dropdown-user-scroll scrollbar-outer">
 																		<li>
 																			<div class="user-box">
-																				<div class="avatar-lg"><img
-																						src="{{ request.user.employeep.profile_picture.url }}"
+																				<div class="avatar-lg">
+																						<a href="{% url 'employee:my_profile' %}"><img src="{{ request.user.employeep.profile_picture.url }}"
 																						alt=""
-																						class="avatar-img rounded">
+																						class="avatar-img rounded"></a>
 																				</div>
 																				<div class="u-text">
 																					<h4>
@@ -396,9 +397,9 @@
 																		</li>
 																		<li>
 																			<div class="dropdown-divider"></div>
-																			<a class="dropdown-item" href="#">My
+																			<a class="dropdown-item" href="{% url 'employee:my_profile' %}">My
 																				Profile</a>
-																			<a class="dropdown-item" href="#">Edit
+																			<a class="dropdown-item" href="{% url 'employee:edit_profile' %}">Edit
 																				Profile</a>
 																			<a class="dropdown-item" href="#">Inbox</a>
 																			<div class="dropdown-divider"></div>
@@ -639,8 +640,8 @@
 
 						</li>
 						
-						<li class="nav-item my-3">
-							<a data-toggle="collapse" href="#sidebarLayouts">
+						<li class="nav-item my-3  {% if section == 'task' %} active {% endif %}">
+							<a data-toggle="collapse" href="#sidebarLayouts"class ="" aria-expanded="false">
 								<i class="fas fa-th-list"></i>
 								<p>Tasks</p>
 								<span class="caret"></span>
@@ -648,17 +649,17 @@
 							<div class="collapse" id="sidebarLayouts">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="#">
+										<a href="{% url 'manager:upcoming_task' %}">
 											<span class="sub-item">Upcoming tasks</span>
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="{% url 'manager:active_task' %}">
 											<span class="sub-item">Active tasks</span>
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="{% url 'manager:task_close' %}">
 											<span class="sub-item">Closed tasks</span>
 										</a>
 									</li>
@@ -666,29 +667,26 @@
 								</ul>
 							</div>
 						</li>
-						<li class="nav-item my-3">
-							<a data-toggle="collapse" href="#write">
+						<li class="nav-item my-3  {% if section == 'Write' %} active {% endif %}">
+
+							<a data-toggle="collapse" href="#write" class ="" aria-expanded="false" >
 								<i class="fas fa-pen-square"></i>
 								<p>Write</p>
 								<span class="caret"></span>
 							</a>
 							<div class="collapse" id="write">
-								<ul class="nav nav-collapse">
+								<ul class="nav nav-collapse ">
 									<li>
-										<a href="#">
+										<a href="{% url 'manager:createtask' %}">
 											<span class="sub-item">Task</span>
 										</a>
 									</li>
-									<li>
-										<a href="{% url 'manager:createpost'%}">
+									<li >
+										<a href="{% url 'manager:createpost' %}">
 											<span class="sub-item">Post</span>
 										</a>
 									</li>
-									<li>
-										<a href="#">
-											<span class="sub-item">Notification</span>
-										</a>
-									</li>
+
 								</ul>
 							</div>
 						</li>
@@ -701,59 +699,67 @@
 							<div class="collapse" id="att">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="#">
+										<a href="{% url 'manager:Mark_attendence_record'%}">
+											<span class="sub-item">Mark Attendence</span>
+										</a>
+									</li>
+									<li>
+										<a href="{% url 'manager:attendence_record'%}">
 											<span class="sub-item">Attendence Record</span>
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="{% url 'manager:today_employee_onworking'%}">
 											<span class="sub-item">Today's Status</span>
 										</a>
 									</li>
 								</ul>
 							</div>
 						</li>
-						<li class="nav-item my-3">
-							<a data-toggle="collapse" href="#leave">
+						<li class="nav-item my-3 {% if section == 'leave' %} active {% endif %}">
+							<a data-toggle="collapse" href="#leave" class="" aria-expanded="false">
 								<i class="far fa-address-card"></i>
 								<p>Leave</p>
 								<span class="caret"></span>
 							</a>
 							<div class="collapse" id="leave">
 								<ul class="nav nav-collapse">
-									<li>
-										<a  href="{% url 'manager:view_employee_leave' %}" class="" aria-expanded="false">
+									<li >
+										<a  href="{% url 'manager:view_employee_leave' %}">
 											<span class="sub-item">Leave Applications</span>
 										</a>
 									</li>
-									<li>
-										<a  href="{% url 'manager:manager_leave' %}" class="" aria-expanded="false">
+									<li >
+										<a  href="{% url 'manager:manager_leave' %}" >
 											<span class="sub-item">Apply for Leave</span>
 										</a>
 									</li>
 								</ul>
 							</div>
 						</li>
+
+
 						<li class="nav-item my-3">
-							<a data-toggle="collapse" href="#">
-								<i class="far fa-clipboard"></i>
+							<li class="nav-item {% if section == 'viewpost' %} active {% endif %}">
+							<a href="{% url 'manager:post' %}" class="" aria-expanded="false"
+								style='margin-top:30px;'>
+								<i class="fas fa-clipboard"></i>
 								<p>View Posts</p>
 							</a>
 						</li>
-						<li class="nav-item my-3">
-							<a data-toggle="collapse" href="#">
+						<li class="nav-item my-3 {% if section == 'viewstaff' %} active {% endif %}">
+							<a  href="{% url 'manager:viewstaff' %}"class="" aria-expanded="false">
 								<i class="fas fa-users"></i>
 								<p>Staff</p>
 							</a>
 						</li>
-						<li class="nav-item my-3">
-							<a data-toggle="collapse" href="#">
-								<i class="fas fa-search"></i>
-								<p>Find Employee</p>
-								
-							</a>
-							
-						</li>
+						<li class="nav-item my-3 {% if section == 'FindStaff' %} active {% endif %}">
+  						 <a  href="{% url 'manager:search' %}">
+     							 <i class="fas fa-users"></i>
+    							  <p>Find Staff</p>
+  								 </a>
+					</li>
+
 						<li class="nav-item my-3">
 							<a href="#">
 								<i class="far fa-chart-bar"></i>
@@ -828,8 +834,8 @@
 								</ul>
 							</div>
 						</li>
-						<li class="nav-item my-3">
-							<a data-toggle="collapse" href="#">
+						<li class="nav-item {% if section == 'ViewPost' %} active {% endif %}">
+							<a  href="{% url 'employee:employee_viewpost' %}" class="" aria-expanded="false">
 								<i class="far fa-clipboard"></i>
 								<p>View Posts</p>
 							</a>
@@ -840,8 +846,7 @@
 								<p>Schedule</p>
 							</a>
 						</li>
-						
-						<li class="nav-item {% if section == 'LeaveApplication' %} active {% endif %}">
+							<li class="nav-item {% if section == 'LeaveApplication' %} active {% endif %}">
 							<a  href="{% url 'employee:employee_leave' %}" class="" aria-expanded="false">
 								<i class="fas fa-pen-nib"></i>
 								<p>Leave Application</p>
@@ -873,8 +878,6 @@
 		</div>
 		<!-- End Sidebar -->
 		{% endif %}
-
-
 
 <!---------------------- For HR ---------------------->
 		{% if request.user.is_authenticated and request.user.is_hr %}
@@ -911,22 +914,22 @@
 							<div class="collapse" id="base">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="#">
+										<a href="{% url 'hr:sep_dashboard' 'PRODUCTION' %}">
 											<span class="sub-item">Production</span>
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="{% url 'hr:sep_dashboard' 'MARKETING' %}">
 											<span class="sub-item">Marketing</span>
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="{% url 'hr:sep_dashboard' 'SALES' %}">
 											<span class="sub-item">Sales</span>
 										</a>
 									</li>
 									<li>
-										<a href="#">
+										<a href="{% url 'hr:sep_dashboard' 'HR' %}">
 											<span class="sub-item">HR</span>
 										</a>
 									</li>
@@ -951,7 +954,8 @@
 							</div>
 						</li>
 
-                        <li class="nav-item my-3">
+
+						<li class="nav-item my-3 {% if section == 'Carrier' %} active {% endif %}">
 							<a data-toggle="collapse" href="#carrier">
 								<i class="fas fa-user-tie"></i>
 								<p>Carrier</p>
@@ -960,7 +964,7 @@
 							<div class="collapse" id="carrier">
 								<ul class="nav nav-collapse">
 									<li>
-										<a href="#">
+										<a href="{% url 'hr:openings' %}">
 											<span class="sub-item">Openings</span>
 										</a>
 									</li>
@@ -978,8 +982,8 @@
 							</div>
 						</li>
 
-						<li class="nav-item my-3">
-							<a data-toggle="collapse" href="#">
+						<li class="nav-item my-3 {% if section == 'Find Staff' %} active {% endif %}">
+							<a  href="{% url 'hr:search' %}">
 								<i class="fas fa-users"></i>
 								<p>Find Staff</p>
 							</a>
@@ -992,9 +996,17 @@
 								<p>Payroll</p>
 
 							</a>
+						<li class="nav-item my-3 {% if section == 'Posts' %} active {% endif %}">
 
-							<li class="nav-item my-3">
-							<a data-toggle="collapse" href="#">
+							<a href="{% url 'hr:Posts' %}">
+								<i class="fas fa-clipboard-list"></i>
+								<p>Posts</p>
+							</a>
+						</li>
+
+							<li class="nav-item my-3 {% if section == 'Leave Application' %} active {% endif %}">
+
+							<a href="{% url 'hr:leave_application' %}">
 								<i class="fas fa-pen-nib"></i>
 								<p>Leave Application</p>
 							</a>

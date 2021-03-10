@@ -8,7 +8,7 @@
 <nav aria-label="breadcrumb">
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item">Manager</li>
-		<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+		<li class="breadcrumb-item active" aria-current="page">View Post</li>
 	</ol>
 </nav>
 <!-------------------------- For SALES ------------------------>
@@ -18,14 +18,14 @@
  <thead>
     <tr>
        <th scope="col">Title</th>
-       <th scope="col">content</th>
+
     </tr>
   </thead>
   <tbody>
 	{% for e in emp %}
     <tr>
-      <td>{{e.title}}</td>
-      <td>{{e.content}}</td>
+        <td><a  href="{% url 'manager:detail_post_application' e.id %}">{{e.title}}</a></td>
+
     </tr>
     {% endfor %}
 
@@ -38,14 +38,14 @@
  <thead>
     <tr>
        <th scope="col">Title</th>
-       <th scope="col">content</th>
+
     </tr>
   </thead>
   <tbody>
 	{% for e in emp %}
     <tr>
-      <td>{{e.title}}</td>
-      <td>{{e.content}}</td>
+        <td> <a  href="{% url 'manager:detail_post_application' e.id %}">{{e.title}}</a></td>
+
     </tr>
     {% endfor %}
 
@@ -58,14 +58,14 @@
  <thead>
     <tr>
        <th scope="col">Title</th>
-       <th scope="col">content</th>
+
     </tr>
   </thead>
   <tbody>
 	{% for e in emp %}
     <tr>
-      <td>{{e.title}}</td>
-      <td>{{e.content}}</td>
+        <td><a  href="{% url 'manager:detail_post_application' e.id %}">{{e.title}}</a></td>
+
     </tr>
     {% endfor %}
 
@@ -78,14 +78,14 @@
  <thead>
     <tr>
        <th scope="col">Title</th>
-       <th scope="col">content</th>
+
     </tr>
   </thead>
   <tbody>
 	{% for e in emp %}
     <tr>
-      <td>{{e.title}}</td>
-      <td>{{e.content}}</td>
+        <td><a  href="{% url 'manager:detail_post_application' e.id %}">{{e.title}}</a></td>
+
     </tr>
     {% endfor %}
 

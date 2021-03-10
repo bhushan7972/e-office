@@ -1,0 +1,87 @@
+{% extends "layouts/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">HR</li>
+		<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+	</ol>
+</nav>
+
+
+<h2>Posts</h2>
+<table class="table">
+  <thead class="table-dark">
+    <tr>
+		<th scope="col">Posted By</th>
+	  <th scope="col">Title</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for e in posts %}
+    <tr>
+        <th scope="row"><a href="{% url 'hr:post_details' e.author.user.id %}">{{e.author.user.first_name}}</a></th>
+	  <td>{{e.title}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<br>
+<br>
+
+{% unread_notifications request.user.id as result %}{% if result > 0 and result < 2 %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+	You have {% unread_notifications request.user.id %} unread notification.
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+	</div>
+
+	{% else %}
+	{% if result > 1 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_notifications request.user.id %} unread notifications.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% endif %}
+	{% endif %}
+
+	{% unread_msg request.user.id as unreadmsg %}{% if unreadmsg > 0 and unreadmsg < 2 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_msg request.user.id %} unread message.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% else %}
+	{% if unreadmsg > 1 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_msg request.user.id %} unread messages.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% endif %}
+	{% endif %}
+
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}

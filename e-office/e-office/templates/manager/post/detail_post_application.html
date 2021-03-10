@@ -1,0 +1,146 @@
+{% extends "layouts/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block title %} leave {% endblock title %}
+{% block content %}
+<style>
+
+.container {
+
+  border: 2px solid #DEDEDE;
+  background-color: #F1F1F1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 80%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+.container img.right {
+  float: center;
+  margin-left: 40px;
+  margin-right:40px;
+}
+.time-right {
+  float: right;
+  color: #aaa;
+}
+.time-left {
+  float: left;
+  color: #999;
+}
+</style>
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">Post Application</li>
+        	<li class="breadcrumb-item active" aria-current="page">View Post Application</li>
+	</ol>
+</nav>
+
+ {% for e in emp1 %}
+<center>
+<div class="profile col-lg-7 col-md-9 col-11">
+<div class="card text-center">
+	<div class="card text-white bg-info mb-3">
+  <div class="card-header">
+	 Post Application
+  </div>
+	</div>
+  <div class="card-body">
+    <h5 class="card-title">Title -  {{e.title}}</h5>
+    <p class="card-text">Content: {{e.content}}</p>
+<a href="{% url 'manager:commentform' e.id %}">Comment</a>
+
+  </div>
+  <div class="card-footer text-muted">
+   Applied on {{e.author}} &nbsp;&nbsp;
+<b>Comments {{a}}</b>
+  </div>
+
+</div>
+
+</div>
+	</center>
+
+    {% endfor %}
+<div align="center">
+{% for comment in comments %}
+<div class="container light col-lg-7 col-md-9 col-11  ">
+	<i class="fas fa-comments time-left"></i><span class="time-left "><b>{{comment.sender}}</b></span><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span class="time-left">{{comment.comment}}</span><br>
+  <span class="time-left">{{comment.timeStamp}}</span>
+</div>
+{% endfor %}
+</div>
+
+<br>
+<br>
+</div>
+
+{% unread_notifications request.user.id as result %}{% if result > 0 and result < 2 %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+	You have {% unread_notifications request.user.id %} unread notification.
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+	</div>
+
+	{% else %}
+	{% if result > 1 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_notifications request.user.id %} unread notifications.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% endif %}
+	{% endif %}
+
+	{% unread_msg request.user.id as unreadmsg %}{% if unreadmsg > 0 and unreadmsg < 2 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_msg request.user.id %} unread message.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% else %}
+	{% if unreadmsg > 1 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_msg request.user.id %} unread messages.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% endif %}
+	{% endif %}
+
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}
+
+
+

@@ -1,0 +1,142 @@
+{% extends "layouts/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block title %} leave {% endblock title %}
+{% block content %}
+<style>
+
+.container {
+
+  border: 2px solid #DEDEDE;
+  background-color: #F1F1F1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 80%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+.container img.right {
+  float: center;
+  margin-left: 40px;
+  margin-right:40px;
+}
+.time-right {
+  float: right;
+  color: #aaa;
+}
+.time-left {
+  float: left;
+  color: #999;
+}
+</style>
+<br><br>
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">Task Application</li>
+        	<li class="breadcrumb-item active" aria-current="page">Task Detail Application</li>
+	</ol>
+</nav>
+
+ {% for e in task_data %}
+<center>
+<div class="profile col-lg-7 col-md-9 col-11">
+<div class="card text-center">
+	<div class="card text-white bg-info mb-3">
+  <div class="card-header">
+	 Task Application
+  </div>
+	</div>
+  <div class="card-body">
+    <h5 class="card-title">Task Title -  {{e.task_name}}</h5>
+    <p class="card-text">Content : {{e.task_details}}</p>
+    <p class="card-text">Assign Date : {{e.task_assign_date}}</p>
+    <p class="card-text"><button class="btn btn-primary btn-border btn-round"><a href="{% url 'manager:task_close_form' e.id %}"> Close Tasks </a></button>
+
+		</p>
+
+
+  </div>
+  <div class="card-footer text-muted">
+   Applied on {{e.task_assign_By}} &nbsp;
+	  &nbsp;
+
+  </div>
+
+</div>
+
+</div>
+	</center>
+
+    {% endfor %}
+
+
+<br>
+<br>
+</div>
+
+{% unread_notifications request.user.id as result %}{% if result > 0 and result < 2 %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+	You have {% unread_notifications request.user.id %} unread notification.
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+	</div>
+
+	{% else %}
+	{% if result > 1 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_notifications request.user.id %} unread notifications.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% endif %}
+	{% endif %}
+
+	{% unread_msg request.user.id as unreadmsg %}{% if unreadmsg > 0 and unreadmsg < 2 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_msg request.user.id %} unread message.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% else %}
+	{% if unreadmsg > 1 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_msg request.user.id %} unread messages.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% endif %}
+	{% endif %}
+
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}
+
+

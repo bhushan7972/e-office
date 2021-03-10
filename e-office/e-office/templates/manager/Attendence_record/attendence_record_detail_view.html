@@ -1,0 +1,76 @@
+{% extends "layouts/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">Attendence</li>
+		<li class="breadcrumb-item active" aria-current="page">Attendence Record</li>
+	</ol>
+</nav>
+
+<center>
+<table  class="table table-bordered table-head-bg-info table-bordered-bd-info">
+ <thead>
+    <tr>
+       <th scope="col">Employee Name</th>
+
+       <th scope="col">Date with Intime</th>
+       <th scope="col">Date with Outtime</th>
+       <th scope="col">Work Status</th>
+    </tr>
+  </thead>
+  <tbody>
+	{% for e in attendence_record_data %}
+
+    <tr>
+		<td>{{e.emp_name}}</td>
+
+        <td>{{e.date_with_intime}}</td>
+        <td>{{e.date_with_outtime}}</td>
+        <td>{{e.work_status}}</td>
+
+    </tr>
+
+
+
+
+ {% endfor %}
+
+  </tbody>
+</table>
+	<center><a href="#"><button type="submit"  class= "btn btn-primary btn-lg col-6 my-2" >Generate Report</button></a></center>
+
+	{% unread_msg request.user.id as unreadmsg %}{% if unreadmsg > 0 and unreadmsg < 2 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_msg request.user.id %} unread message.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% else %}
+	{% if unreadmsg > 1 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_msg request.user.id %} unread messages.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% endif %}
+	{% endif %}
+
+
+	{% endblock content %}
+
+	<!-- Specific JS goes HERE -->
+	{% block javascripts %}{% endblock javascripts %}

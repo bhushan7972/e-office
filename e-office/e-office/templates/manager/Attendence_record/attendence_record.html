@@ -1,0 +1,98 @@
+{% extends "layouts/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">Attendence</li>
+		<li class="breadcrumb-item active" aria-current="page">Attendence Record</li>
+	</ol>
+</nav>
+
+<center>
+<table class="table">
+ <thead>
+    <tr>
+
+
+       <th scope="col">Employee Name</th>
+       <th scope="col">Month</th>
+	<th scope="col">View Attendence</th>
+    </tr>
+  </thead>
+  <tbody>
+	{% for e in attendence_record_data %}
+
+    <tr>
+
+
+		<td>{{e.user.username}}</td>
+		<form action="{% url 'manager:attendence_detail_view' e.user.id %}" method='post'>
+
+              {% csrf_token %}
+<td>
+                 <select  class="btn btn-primary btn-border"  name="month" value="">
+
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                     </select></td>
+
+
+
+
+
+			<td><input type='submit' class="btn btn-primary btn-border btn-round" value='View Record'></td>
+ </form>
+    </tr>
+
+    {% endfor %}
+
+
+
+  </tbody>
+</table>
+
+	{% unread_msg request.user.id as unreadmsg %}{% if unreadmsg > 0 and unreadmsg < 2 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_msg request.user.id %} unread message.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% else %}
+	{% if unreadmsg > 1 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_msg request.user.id %} unread messages.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% endif %}
+	{% endif %}
+
+
+
+	{% endblock content %}
+
+	<!-- Specific JS goes HERE -->
+	{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,74 @@
+{% load static %}
+<html lang="en">
+<head>
+<title>{% block title %} {% endblock %}</title>
+<!--		<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}"/>-->
+<style>
+
+</style>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+<div class="header">
+  <h1>Student Management System</h1>
+   {% if request.user.is_authenticated %}
+  <h4 >Welcome, {{user.first_name|capfirst}}</h4>
+   {% endif %}
+</div>
+<div class="navbar">
+    {% if request.user.is_authenticated %}
+       <a href="{% url 'StudInfo:logout'%}" class="right">Logout</a>
+    {% else %}
+       <a href="{% url 'StudInfo:signin' %}">SignIn</a>
+    {% endif %}
+        <a href="{% url 'StudInfo:home' %}">Home</a>
+    {% if request.user.is_student %}
+		    <a href="{% url 'StudInfo:profile'%}" class="right">Profile</a>
+        <a href="{% url 'StudInfo:giveexam'%}" class="right">GiveExam</a>
+		    <a href="{% url 'StudInfo:stud_Give_exam' %}">Exam</a>
+		    <a href="{% url 'teacher:teacher_view_notification'%}">View Notification </a><br>
+    {% elif request.user.is_teacher %}
+<!--        <a href="{% url 'teacher:teacher_details' %}">Teachers_Details</a><br>-->
+<!--        <a href="{% url 'teacher:list_student' %}">View_Result</a>-->
+<!--        <a href="{% url 'teacher:showquestion' %}">Check Exam Questions</a>-->
+<!--        <a href="{% url 'teacher:teacher_subshow' %}">Teacher Subject</a>-->
+    {% elif request.user.is_admin %}
+    {% endif %}
+</div>
+<div class="row">
+  <div class="side">
+     {% block sidediv %}
+      {% if request.user.is_teacher %}
+        <a href="{% url 'teacher:teacher_details' %}">Teachers_Details</a><br>
+        <a href="{% url 'teacher:list_student' %}">View_Result</a><br>
+        <a href="{% url 'teacher:add_result'  %}">Add_Result</a><br>
+        <a href="{% url 'teacher:stud_attendance'  %}">StudentAttendance</a><br>
+        <a href="{% url 'teacher:show_attendance'  %}">ViewAttendance</a><br>
+        <a href="{% url 'teacher:teacher_add_subject' %}">Add Subject To Teacher</a><br>
+			  <a href="{% url 'teacher:teacher_subshow' %}">Create ExamQuestion</a><br>
+			   <a href="{% url 'teacher:showquestion' %}">Show SubjectWise Questions</a><br>
+        <a href="{% url 'teacher:teacher_notification'%}">Send Notification</a><br>
+			  <a href="{% url 'teacher:teacher_view_notification'%}">View Notification </a><br>
+       {% endif %}
+      {% endblock %}
+  </div>
+<div class="main" text-align="center">
+        {% block maindiv %}{% endblock %}
+
+</div>
+</div>
+<!--<div class="footer">-->
+<!--&lt;!&ndash;  <h2>Footer</h2>&ndash;&gt;-->
+<!--</div>-->
+{% block content %} {% endblock %}
+{% block body %} {% endblock %}
+</body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</html>

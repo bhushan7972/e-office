@@ -1,0 +1,90 @@
+{% extends "layouts/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block title %} leave {% endblock title %}
+{% block content %}
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">Post Application</li>
+        	<li class="breadcrumb-item active" aria-current="page">Comment Post </li>
+	</ol>
+</nav>
+
+<center>
+
+<div> {% for e in emp1 %}
+	 <form action="{% url 'manager:postComment' e.id %}" method="post">
+        {% csrf_token %}
+
+		   {{form|crispy}}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {% endfor %}
+</div>
+</center>
+
+
+
+
+
+
+
+
+<br>
+<br>
+
+
+{% unread_notifications request.user.id as result %}{% if result > 0 and result < 2 %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+	You have {% unread_notifications request.user.id %} unread notification.
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+	</div>
+
+	{% else %}
+	{% if result > 1 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_notifications request.user.id %} unread notifications.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% endif %}
+	{% endif %}
+
+	{% unread_msg request.user.id as unreadmsg %}{% if unreadmsg > 0 and unreadmsg < 2 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_msg request.user.id %} unread message.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% else %}
+	{% if unreadmsg > 1 %}
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		You have {% unread_msg request.user.id %} unread messages.
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+
+	{% endif %}
+	{% endif %}
+
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE -->
+{% block javascripts %}{% endblock javascripts %}
+
+
+

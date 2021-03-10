@@ -1,0 +1,42 @@
+{% extends "layouts/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block title %} Post {% endblock title %}
+<style>
+		b{
+		  color:blue;
+		}
+</style>
+{% block content %}
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item">Employee/Post Details</li>
+		
+	</ol>
+</nav>
+<center>
+<div class="profile col-lg-7 col-md-9 col-11">
+<div class="card text-center">
+	<div class="card text-white bg-info mb-3">
+  <div class="card-header">
+  {% for p in post2 %}
+	 <br><h2><b style="color:white;">{{p.title}}</b><br></h2><br>
+  </div>
+	</div>
+    <h4 >
+				
+     <b style="color:blue;">{{p.content}}</b><br><br>
+    Posted  Date : <b style="color:blue;">{{p.post_date}}</b><br><br>
+   
+    </h4>
+		
+		 <h2><a href="{% url 'employee:employee_post_comment' p.id %}" >Comment</a></h2><br>
+{% endfor %}
+  </div>
+</div>
+
+</center>
+
+{% endblock content %}

@@ -1,0 +1,40 @@
+{% extends "layouts/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block title %} Dashboard {% endblock title %}
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+{% endblock stylesheets %}
+{% block content %}
+
+
+
+
+  <form action="{% url 'manager:search' %}" name="form">
+      <input id="myInput" type="text" placeholder="Search.." type="search" name='search' placeholder='search'type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+<div id="empty"> </div>
+      <button onclick="checkdata()" id="search-button" type="submit" class="btn btn-secondary btn-sm">
+      <i class="fas fa-search"></i>
+    </button>
+</form>
+
+
+
+<script>
+    function checkdata(){
+     var a = document.forms["form"]["search"].value;
+     var b=document.getElementById('empty');
+
+    if (a == null  || a == "" ){
+    event.preventDefault()
+    b.innerHTML ='Enter Something to search';
+
+    }else{
+
+    }
+    }
+</script>
+
+
+{% endblock %}

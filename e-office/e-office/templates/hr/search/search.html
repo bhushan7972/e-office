@@ -1,0 +1,104 @@
+{% extends "layouts/base_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load custom_tags %}
+{% load static %}
+{% block title %} Dashboard {% endblock title %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}
+{% endblock stylesheets %}
+
+{% block content %}
+
+<br>
+<center>
+<form action="{% url 'hr:search' %}">
+      <input id="search-input" style="width: 18rem;" type="search" name='search' placeholder='search'>
+    <button id="search-button" type="submit" class="btn btn-secondary btn-sm">
+      <i class="fas fa-search"></i>
+    </button>
+</form>
+</center>
+<br>
+<br>
+{% if results %}
+<center><h2>Your Search Results :</h2></center>
+<div class="row">
+
+  {% for i in employee_list %}
+
+    <div class="col-sm-4">
+    <div class="card" style="width: auto;">
+  <img src="{{ i.profile_picture.url }}" class="card-img-top" alt="Not Applicable" height="200">
+  <div class="card-body">
+    <label><b> Name :</b></label><a href="{% url 'hr:vew_pro' i.user.id %}" class="card-link"><big>{{i.user.first_name|capfirst}}  {{ '  ' }}  {{i.user.last_name|capfirst}}</big></a>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><b>Category :</b> Employee</li>
+    <li class="list-group-item"><b>Designation </b> : {{i.designation}}</li>
+    <li class="list-group-item"><h5><b>Department :</b> {{i.department}}</h5></li>
+  </ul>
+  <div class="card-body">
+    <a href="{% url 'moderator:message' i.user.id %}" class="card-link">
+    <i class="fa fa-envelope fa-2x" aria-hidden="true">{{ ' ' }}Message</i>
+      </a>
+  </div>
+</div>
+    </div>
+
+  {% endfor %}
+
+  {% for i in manager_list %}
+    <div class="col-sm-4">
+    <div class="card" style="width: auto;">
+  <img src="{{ i.profile_picture.url }}" class="card-img-top" alt="Not Applicable" height="200">
+  <div class="card-body">
+    <label><b> Name :</b></label> <a href="{% url 'hr:vew_pro' i.user.id %}" class="card-link"><big>{{i.user.first_name|capfirst}}  {{ '  ' }}  {{i.user.last_name|capfirst}}</big></a>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><b>Category :</b> Manager</li>
+    <li class="list-group-item"><b>Designation </b> : {{i.designation}}</li>
+    <li class="list-group-item"><h5><b>Department :</b> {{i.department}}</h5></li>
+  </ul>
+  <div class="card-body">
+    <a href="{% url 'moderator:message' i.user.id %}" class="card-link">
+    <i class="fa fa-envelope fa-2x" aria-hidden="true">{{ ' ' }}Message</i>
+      </a>
+  </div>
+</div>
+    </div>
+
+
+  {% endfor %}
+
+  {% for i in hr_list %}
+    <div class="col-sm-4">
+    <div class="card" style="width: auto;">
+  <img src="{{ i.profile_picture.url }}" class="card-img-top" alt="Not Applicable" height="200">
+  <div class="card-body">
+    <label><b> Name :</b></label><a href="{% url 'hr:vew_pro' i.user.id %}" class="card-link"><big>{{i.user.first_name|capfirst}}  {{ '  ' }}  {{i.user.last_name|capfirst}}</big></a>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><b>Category :</b> HR</li>
+    <li class="list-group-item"><b>Designation </b> : {{i.designation}}</li>
+    <li class="list-group-item"><h5><b>Department :</b> {{i.department}}</h5></li>
+  </ul>
+  <div class="card-body">
+    <a href="{% url 'moderator:message' i.user.id %}" class="card-link">
+    <i class="fa fa-envelope fa-2x" aria-hidden="true">{{ ' ' }}Message</i>
+      </a>
+  </div>
+</div>
+    </div>
+
+
+  {% endfor %}
+ </div>
+
+
+
+{% else %}
+<center><h5 class="text-danger" >No Data Found</h5></center>
+{% endif %}
+
+{% endblock %}
